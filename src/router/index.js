@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import AboutView from "../views/AboutView.vue"
 import SignInView from "../views/SignInView.vue"
+import AddCompany from "../views/AddCompany.vue"
+import CompanyDetail from "../views/CompanyDetail.vue"
 
 const routes = [
   {
@@ -18,6 +20,17 @@ const routes = [
     path: "/singin",
     name: "singIn",
     component: SignInView,
+  },
+  {
+    path: "/addcompany",
+    name: "addCompany",
+    component: AddCompany,
+  },
+  {
+    path: "/companydetail",
+    name: "companyDetail",
+    component: CompanyDetail,
+    props: true,
   },
 ]
 
