@@ -2,7 +2,8 @@
   <div class="home">
     <div class="company-list">
       <div v-for="company in companies" :key="company.id">
-        <router-link to="/companydetail">{{ company.name }}</router-link>
+        <btn @click="showDetail(company)">{{ company.name }}</btn>
+        <!-- <router-link to="/companydetail">{{ company.name }}</router-link> -->
         {{ company.industry }}
       </div>
     </div>
@@ -24,7 +25,25 @@ export default {
     }
   },
   methods: {
-    showDetail() {},
+    showDetail(company) {
+      console.log(company.competitors)
+      this.$router.push({
+        name: "companyDetail",
+        params: {
+          id: company.id,
+          name: company.name,
+          industry: company.industry,
+          logInId: company.logInId,
+          password: company.password,
+          mypageURL: company.mypageURL,
+          competitors: company.competitors,
+          gakuchika: company.gakuchika,
+          aspiration: company.aspiration,
+          strengths: company.strengths,
+          weakness: company.weakness,
+        },
+      })
+    },
   },
   created() {
     getDocs(collection(db, "company")).then((snapshot) => {

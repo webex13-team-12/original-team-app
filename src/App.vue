@@ -3,11 +3,38 @@
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/singin">ログイン</router-link>
+      <router-link to="/signin">ログイン</router-link>
     </nav>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      currentUser: null,
+    }
+  },
+  methods: {
+    updateUser(user) {
+      this.currentUser = user
+      console.log(this.currentUser)
+    },
+  },
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+  },
+  provide() {
+    return {
+      currentUser: this.currentUser,
+    }
+  },
+}
+</script>
 
 <style>
 #app {

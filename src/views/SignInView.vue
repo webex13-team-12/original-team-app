@@ -21,6 +21,7 @@ import {
   signOut,
 } from "firebase/auth"
 export default {
+  inject: ["currentUser"],
   data() {
     return {
       email: "",
@@ -50,7 +51,9 @@ export default {
         signInWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user
+
             this.user = user
+            this.$emit("updateUser", user)
             alert(this.user.email + "でログインしました")
             // ...
           })
