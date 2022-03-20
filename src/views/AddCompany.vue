@@ -100,7 +100,6 @@
 
 <script>
 import { collection, addDoc } from "firebase/firestore"
-import { getAuth } from "firebase/auth"
 // firebase.js で db として export したものを import
 import { db } from "@/firebase"
 export default {
@@ -122,9 +121,8 @@ export default {
     }
   },
   created() {
-    const auth = getAuth()
-    const user = auth.currentUser
-    this.user = user
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+    console.log(this.user, "addcompany")
   },
   methods: {
     addCompetitor() {
@@ -134,24 +132,24 @@ export default {
     },
     addCompany() {
       console.log(this.user)
-      // if (this.user) {
-      addDoc(collection(db, "company"), {
-        // user: this.user,
-        name: this.name,
-        industry: this.industry,
-        logInId: this.logInId,
-        password: this.password,
-        mypageURL: this.mypageURL,
-        competitors: this.competitors,
-        gakuchika: this.gakuchika,
-        aspiration: this.aspiration,
-        strengths: this.strengths,
-        weakness: this.weakness,
-      })
-      alert("上記の企業を追加します")
-      // } else {
-      //   alert("ログインユーザーがいません")
-      // }
+      if (this.user) {
+        addDoc(collection(db, "company"), {
+          user: this.user.uid,
+          name: this.name,
+          industry: this.industry,
+          logInId: this.logInId,
+          password: this.password,
+          mypageURL: this.mypageURL,
+          competitors: this.competitors,
+          gakuchika: this.gakuchika,
+          aspiration: this.aspiration,
+          strengths: this.strengths,
+          weakness: this.weakness,
+        })
+        alert("上記の企業を追加します")
+      } else {
+        alert("ログインユーザーがいません")
+      }
     },
   },
 }

@@ -1,14 +1,29 @@
 <template>
   <div id="login">
-    <input type="email" v-model="email" />
-    <input type="password" v-model="password" />
-    <button @click="mailSignUp">アカウント新規作成</button>
-    <button @click="mailSignIn">ログイン</button>
-    <button @click="mailLogOut" v-bind:disabled="user == null">
-      ログアウト
+    <div class="logIn-input">
+      <div class="text">メールアドレス</div>
+      <input type="email" v-model="email" placeholder="メールアドレス" />
+    </div>
+    <div class="logIn-input">
+      <div class="text">パスワード</div>
+      <input type="password" v-model="password" placeholder="パスワード" />
+    </div>
+    <button @click="mailSignUp" v-bind:disabled="user !== null">
+      アカウント新規作成
+    </button>
+    <div>
+      <button @click="mailSignIn" v-bind:disabled="user !== null">
+        ログイン
+      </button>
+      <button @click="mailLogOut" v-bind:disabled="user == null">
+        ログアウト
+      </button>
+    </div>
+
+    <button @click="googleSignIn" v-bind:disabled="user !== null">
+      Googleでログイン
     </button>
   </div>
-  <button @click="googleSignIn">googleSignIn</button>
 </template>
 
 <script>
@@ -29,6 +44,7 @@ export default {
       user: null,
     }
   },
+  props: ["currentUser"],
   methods: {
     googleSignIn() {
       const auth = getAuth()
@@ -38,6 +54,7 @@ export default {
         .then((result) => {
           const user = result.user
           this.user = user
+          JSON.parse(localStorage.setItem("currentUser", JSON.stringify(user)))
           alert(user.email + "ログイン完了！")
         })
         .catch((error) => {
@@ -53,9 +70,10 @@ export default {
             const user = userCredential.user
 
             this.user = user
-            this.$emit("updateUser", user)
+            JSON.parse(
+              localStorage.setItem("currentUser", JSON.stringify(user))
+            )
             alert(this.user.email + "でログインしました")
-            // ...
           })
           .catch((error) => {
             const errorCode = error.code
@@ -68,12 +86,15 @@ export default {
     },
     mailSignUp() {
       const auth = getAuth()
-      // auth.languageCode = "ja"
       if (this.email.match("@")) {
         createUserWithEmailAndPassword(auth, this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user
             this.user = user
+            JSON.parse(
+              localStorage.setItem("currentUser", JSON.stringify(user))
+            )
+
             alert(this.user.email + "でサインアップしました")
           })
           .catch((err) => {
@@ -89,6 +110,8 @@ export default {
       const auth = getAuth()
       signOut(auth)
         .then(() => {
+          localStorage.removeItem("currentUser")
+          this.user = null
           alert("Sign-out successful.")
         })
         .catch((error) => {
@@ -97,9 +120,37 @@ export default {
     },
   },
   computed() {
-    const auth = getAuth()
-    const user = auth.currentUser
-    this.user = user
+    this.user = localStorage.getItem("currentUser")
+    console.log()
+  },
+  created() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+    console.log(this.user, "signin")
   },
 }
 </script>
+<style scoped>
+#login {
+  background-color: #59adc7;
+  color: white;
+  height: 300px;
+}
+.logIn-input {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+input {
+  border-radius: 20px;
+  text-align: center;
+}
+.text {
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+button {
+  padding: 10px;
+  margin-top: 5px;
+}
+</style>

@@ -114,8 +114,7 @@
 </template>
 
 <script>
-import { getAuth } from "firebase/auth"
-import { collection, getDocs, query, where } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore"
 import { db } from "../firebase"
 // firebase.js で db として export したものを import
 export default {
@@ -127,17 +126,17 @@ export default {
     }
   },
   created() {
-    const auth = getAuth()
-    const user = auth.currentUser
-    this.name = this.$route.params.name.toString()
-    const q = query(collection(db, "company"), where("name", "==", this.name))
-    getDocs(q).then((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.selectedCompany = doc.data()
-      })
+    const id = this.$route.params.id.toString()
+    const companyRef = doc(db, "company", id)
+    getDoc(companyRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data())
+        this.selectedCompany = docSnap.data()
+      } else {
+        console.log("No such document!")
+      }
     })
-
-    this.user = user
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
   },
 }
 </script>
