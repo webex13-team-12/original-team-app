@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     showDetail(company) {
-      console.log(company.competitors)
       this.$router.push({
         name: "companyDetail",
         params: {
@@ -41,7 +40,6 @@ export default {
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    console.log(this.user, "home")
     if (this.user) {
       const q = query(
         collection(db, "company"),

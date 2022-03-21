@@ -45,7 +45,6 @@ export default {
   methods: {},
   computed() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"))
-    console.log(this.currentUser, "app.vue")
   },
 }
 </script>

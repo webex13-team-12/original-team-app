@@ -130,10 +130,10 @@ export default {
     const companyRef = doc(db, "company", id)
     getDoc(companyRef).then((docSnap) => {
       if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data())
+        alert("Document data:", docSnap.data())
         this.selectedCompany = docSnap.data()
       } else {
-        console.log("No such document!")
+        alert("No such document!")
       }
     })
     this.user = JSON.parse(localStorage.getItem("currentUser"))
