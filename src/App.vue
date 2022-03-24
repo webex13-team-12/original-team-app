@@ -1,8 +1,5 @@
-diff --git a/src/App.vue b/src/App.vue index ca84756..e7a00be 100644
-b/src/App.vue
-
 <template>
-  <header>
+  <!-- <header>
     <div></div>
     <nav class="header_content">
       <router-link to="/" class="header_home">Home</router-link> |
@@ -12,28 +9,55 @@ b/src/App.vue
       <router-link to="/login" class="header_login">ログイン</router-link>
     </nav>
     <router-view />
-  </header>
+  </header> -->
 
-  <!-- <div id="app">
-    <upload v-model="picture" />
-    <img :src="picture" />
-  </div> -->
+  <div class="nav__bar">
+    <!-- <nav> -->
+    <!-- <router-link
+        v-if="currentUser !== null"
+        to="/"
+        class="nav__logo nav__link"
+        >企業リスト</router-link
+      > -->
+    <router-link to="/" class="nav__logo nav__link">企業リスト</router-link>
+
+    <div class="nav__items">
+      <router-link
+        to="/about"
+        class="nav__item nav__link"
+        v-bind:val="currentUser"
+        >自己分析</router-link
+      >
+      <!-- <router-link
+          v-if="currentUser === null"
+          to="/signin"
+          class="nav__item nav__link"
+          >マイページ</router-link
+        > -->
+      <router-link to="/mypage" class="nav__item nav__link"
+        >マイページ</router-link
+      >
+      <router-link to="/signin" class="nav__item nav__link"
+        >ログイン(about)</router-link
+      >
+    </div>
+    <!-- </nav> -->
+  </div>
+  <router-view />
 </template>
 
 <script>
-// import UpLoad from "./components/MyPageView.vue"
-
-// export default {
-//   name: `app`,
-//   comments: {
-//     UpLoad,
-//   },
-//   data() {
-//     return {
-//       picture: null,
-//     }
-//   },
-// }
+export default {
+  data() {
+    return {
+      currentUser: null,
+    }
+  },
+  methods: {},
+  computed() {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  },
+}
 </script>
 
 <style>
@@ -83,19 +107,48 @@ b/src/App.vue
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
+.nav__bar {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: #59adc7;
+  margin-bottom: 20px;
 }
-
-nav a {
+.nav__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: rgba(221, 220, 220, 0.89);
+  text-decoration: none;
+  font-size: larger;
   font-weight: bold;
-  color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
+.nav a.router-link-exact-active {
   color: #fdfffe;
+}
+.nav__link:visited {
+  color: #eee;
+}
+.nav__link:hover {
+  font-weight: bold;
+  color: #fff;
+}
+.nav__logo {
+  width: 130px;
+}
+.nav__items {
+  display: flex;
+}
+.nav__item {
+  width: 100px;
+  border-left: 1px solid #eee;
+}
+* {
+  padding: 0;
+  margin: 0;
 }
 </style>
