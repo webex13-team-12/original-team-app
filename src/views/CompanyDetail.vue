@@ -217,7 +217,6 @@ export default {
   methods: {
     toEditable() {
       this.isEditable = !this.isEditable
-      console.log(this.isEditable)
     },
     addCompetitor() {
       const competitor = {
@@ -229,7 +228,6 @@ export default {
     },
     editFinish() {
       this.isEditable = !this.isEditable
-      console.log(this.id)
       const companyRef = doc(db, "company", this.id)
       setDoc(companyRef, {
         user: this.selectedCompany.user,
@@ -256,8 +254,6 @@ export default {
       ) {
         deleteDoc(companyRef)
         this.$router.push("/")
-      } else {
-        console.log("キャンセルボタンが押されました。")
       }
     },
   },

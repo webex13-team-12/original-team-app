@@ -172,7 +172,6 @@ export default {
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    console.log(this.user, "addcompany")
   },
   methods: {
     addCompetitor() {
@@ -181,7 +180,6 @@ export default {
       this.competitor = ""
     },
     addCompany() {
-      console.log(this.user)
       if (this.user) {
         addDoc(collection(db, "company"), {
           user: this.user.uid,

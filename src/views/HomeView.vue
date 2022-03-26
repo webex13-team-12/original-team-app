@@ -73,7 +73,6 @@ export default {
             industry.push(value.industry)
           }
         })
-        console.log(industry)
         this.industrial_companies = []
         for (let i = 0; i < industry.length; i++) {
           let this_industry_company = []
