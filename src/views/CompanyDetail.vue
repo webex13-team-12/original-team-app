@@ -181,15 +181,13 @@ export default {
     },
   },
   created() {
-    let id = ""
-    if (this.$route.params.id) {
-      id = this.$route.params.id.toString()
-    }
-
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    if (id) {
-      JSON.parse(localStorage.setItem("selectedCompanyId", JSON.stringify(id)))
+    if (this.$route.params.id) {
       console.log("192")
+      localStorage.setItem(
+        "selectedCompanyId",
+        JSON.stringify(this.$route.params.id)
+      )
     }
     this.id = JSON.parse(localStorage.getItem("selectedCompanyId"))
 
