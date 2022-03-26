@@ -3,7 +3,7 @@
     <textarea
       class="form__textarea"
       v-model="text"
-      placeholder="いまどうしてる？"
+      placeholder="幼少期～大学までの経験を共有しよう！"
     />
     <div class="form__buttons">
       <button v-on:click="postTweet" class="form__submit-button">投稿</button>
@@ -19,9 +19,7 @@ export default {
     }
   },
   methods: {
-    postTweet() {
-      alert("投稿機能の完成をお楽しみに！")
-    },
+    postTweet() {},
   },
 }
 </script>
