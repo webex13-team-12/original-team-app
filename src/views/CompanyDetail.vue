@@ -2,7 +2,7 @@
   <div class="company-info">
     <div>
       <h2>企業詳細画面</h2>
-      <button @click="toEdit">編集モード</button>
+      <button @click="toEditable">編集モード</button>
     </div>
     <div class="company-info-basic">
       <h5>基本情報</h5>
@@ -128,12 +128,12 @@
     </div>
   </div>
   <div>
-    <button v-if="isEditable">編集完了</button>
+    <button v-if="isEditable" @click="editFinish">編集完了</button>
   </div>
 </template>
 
 <script>
-import { doc, getDoc, serverTimestamp } from "firebase/firestore"
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore"
 import { db } from "../firebase"
 // firebase.js で db として export したものを import
 export default {
@@ -162,9 +162,10 @@ export default {
     },
     editFinish() {
       this.isEditable = !this.isEditable
+      console.log(this.id)
       const companyRef = doc(db, "company", this.id)
-      companyRef.update({
-        user: this.selectedCompany.user.uid,
+      setDoc(companyRef, {
+        user: this.selectedCompany.user,
         name: this.selectedCompany.name,
         industry: this.selectedCompany.industry,
         logInId: this.selectedCompany.logInId,
@@ -180,9 +181,11 @@ export default {
     },
   },
   created() {
-    const id = this.$route.params.id.toString()
+    let id = ""
+    if (this.$route.params.id.toString()) {
+      id = this.$route.params.id.toString()
+    }
 
-    console.log(id)
     this.user = JSON.parse(localStorage.getItem("currentUser"))
     if (!id) {
       JSON.parse(localStorage.setItem("selectedCompanyId", JSON.stringify(id)))
