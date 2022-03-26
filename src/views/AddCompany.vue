@@ -8,8 +8,50 @@
         <input type="text" placeholder="企業名" v-model="name" />
       </div>
       <div class="company-info-block">
-        <p>業界</p>
-        <input type="text" placeholder="業界" v-model="industry" />
+        <div id="v-model-select" class="demo">
+          <span>業界：</span>
+          <select v-model="industry">
+            <option disabled value="">業界を選択してください</option>
+            <option>証券・ネット証券業界</option>
+            <option>生命保険業界</option>
+            <option>損害保険業界</option>
+            <option>クレジット業界界</option>
+            <option>リース業界</option>
+            <option>通信サービス業界</option>
+            <option>ソフトウェア業界</option>
+            <option>インターネットサービス業界</option>
+            <option>ネット広告・広告業界</option>
+            <option>テレビ業界</option>
+            <option>出版業界</option>
+            <option>新聞業界</option>
+            <option>建設業界</option>
+            <option>不動産業界</option>
+            <option>住宅業界</option>
+            <option>航空業界</option>
+            <option>鉄道業界</option>
+            <option>海運業界</option>
+            <option>電力業界</option>
+            <option>化学業界</option>
+            <option>鉄鋼業界</option>
+            <option>自動車業界</option>
+            <option>機械業界</option>
+            <option>電気機器業界</option>
+            <option>電子部品業界</option>
+            <option>食品業界</option>
+            <option>総合商社業界</option>
+            <option>専門商社業界</option>
+            <option>百貨店業界</option>
+            <option>医薬品業界</option>
+            <option>化粧品業界</option>
+            <option>アパレル業界</option>
+            <option>人材業界</option>
+            <option>教育業界</option>
+            <option>コンサルティング業界</option>
+            <option>旅行業界</option>
+            <option>ゲーム・玩具業界</option>
+            <option>映像・音楽業界</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -92,6 +134,13 @@
       </div>
     </div>
 
+    <div class="company-info-memo">
+      <h5>メモ</h5>
+      <div class="company-info-block">
+        <textarea name="" id="" cols="100" rows="5" v-model="memo"></textarea>
+      </div>
+    </div>
+
     <div>
       <button @click="addCompany">企業追加</button>
     </div>
@@ -118,6 +167,7 @@ export default {
       aspiration: "",
       strengths: "",
       weakness: "",
+      memo: "",
     }
   },
   created() {
@@ -145,9 +195,11 @@ export default {
           aspiration: this.aspiration,
           strengths: this.strengths,
           weakness: this.weakness,
+          memo: this.memo,
           createdAt: serverTimestamp(),
         })
         alert("上記の企業を追加します")
+        this.$router.push("/")
       } else {
         alert("ログインユーザーがいません")
       }
