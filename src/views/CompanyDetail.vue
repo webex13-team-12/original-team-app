@@ -3,6 +3,7 @@
     <div>
       <h2>企業詳細画面</h2>
       <button @click="toEditable">編集モード</button>
+      <button @click="deleteCom(id)">{{ selectedCompany.name }}を削除</button>
     </div>
     <div class="company-info-basic">
       <h5>基本情報</h5>
@@ -133,7 +134,13 @@
 </template>
 
 <script>
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore"
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore"
 import { db } from "../firebase"
 // firebase.js で db として export したものを import
 export default {
@@ -179,11 +186,22 @@ export default {
         updatedAt: serverTimestamp(),
       })
     },
+    deleteCom(id) {
+      const companyRef = doc(db, "company", id)
+      if (
+        confirm(
+          this.selectedCompany.name + "の企業情報を削除してよろしいですか？"
+        )
+      ) {
+        deleteDoc(companyRef)
+      } else {
+        console.log("キャンセルボタンが押されました。")
+      }
+    },
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
     if (this.$route.params.id) {
-      console.log("192")
       localStorage.setItem(
         "selectedCompanyId",
         JSON.stringify(this.$route.params.id)
