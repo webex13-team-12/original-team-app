@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import { collection, addDoc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 // firebase.js で db として export したものを import
 import { db } from "@/firebase"
 export default {
@@ -145,6 +145,7 @@ export default {
           aspiration: this.aspiration,
           strengths: this.strengths,
           weakness: this.weakness,
+          createdAt: serverTimestamp(),
         })
         alert("上記の企業を追加します")
       } else {
