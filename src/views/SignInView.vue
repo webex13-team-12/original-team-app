@@ -58,7 +58,7 @@ export default {
           alert(user.email + "ログイン完了！")
         })
         .catch((error) => {
-          console.log(error)
+          alert(error)
         })
     },
     mailSignIn() {
@@ -121,11 +121,9 @@ export default {
   },
   computed() {
     this.user = localStorage.getItem("currentUser")
-    console.log()
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    console.log(this.user, "signin")
   },
 }
 </script>
