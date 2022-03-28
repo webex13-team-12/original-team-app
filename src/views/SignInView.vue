@@ -71,8 +71,9 @@
       </div>
       <div class="mypage_right">
         <div class="mypage_daimei">あなただけの過去・未来<br /></div>
-        <div class="mypage_text">マイページ機能の説明</div>
-        <div>マイページ</div>
+        <div class="mypage_text">
+          何度も使うガクチカを志望動機を登録しよう！<br />目標を立てて頑張れる！
+        </div>
       </div>
     </div>
 
@@ -423,7 +424,7 @@ form {
 
 .switch {
   position: absolute;
-  top: 3000px;
+  top: 3300px;
   left: 50%;
   width: 180px;
   height: 40px;
@@ -621,13 +622,6 @@ a.btn-malformation:hover {
   width: 400px;
 }
 
-.resize_bluememo img {
-  width: 400px;
-}
-.resize5 img {
-  width: 400px;
-}
-
 .anoy_daimei {
   background-color: #59adc7;
   width: 430px;
@@ -707,6 +701,14 @@ a.btn-malformation:hover {
 
   margin-top: 30px;
 }
+.resize_bluememo img {
+  width: 350px;
+}
+.resize5 img {
+  width: 500px;
+  margin-top: 150px;
+  margin-left: -70px;
+}
 .company_left {
   margin-left: 200px;
 }
@@ -715,8 +717,9 @@ a.btn-malformation:hover {
 }
 .company_box {
   display: flex;
-  margin-top: 50px;
+  margin-top: 100px;
 }
+
 .mypage_daimei {
   background-color: #59adc7;
   width: 430px;
