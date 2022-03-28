@@ -168,9 +168,11 @@
     </div>
   </div>
 
+
   <!-- この空画像は一旦srcのassetsに入ってる -->
   <!-- <div class="top_daimei">就活を、自分を、クリアに</div> -->
   <!-- <img src="@/assets/busy_woman.png" alt="悩み女性" /> -->
+
 </template>
 
 <script>
