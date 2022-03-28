@@ -108,9 +108,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background: #eeeff1;
+  padding-bottom: 30px;
 }
 .nav__bar {
-  height: 50px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -153,6 +155,7 @@ export default {
 }
 * {
   padding: 0;
+
   margin: 0;
 }
 .router-link {
