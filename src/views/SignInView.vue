@@ -1,5 +1,4 @@
 <template>
-
   <div class="top_box">
     <div>
       <p class="top_daimei">就活を、自分を、クリアにできるサイト</p>
@@ -167,95 +166,6 @@
         <p @click="mailLogOut"><a>ログアウト</a></p>
       </div>
     </div>
-
-  <div v-if="!user" class="form-wrapper">
-    <h1 v-if="isSignIn">Sign in</h1>
-    <h1 v-else>Create an account</h1>
-    <div class="toggle-radio">
-      <input @click="toSignIn(1)" type="radio" name="rdo" id="yes" checked />
-      <input @click="toSignIn(2)" type="radio" name="rdo" id="no" />
-      <div class="switch">
-        <label class="toggle-label-left" for="yes">Sign In</label>
-        <label class="toggle-label-right" for="no">Sign Up</label>
-        <span></span>
-      </div>
-    </div>
-    <form>
-      <div class="form-item">
-        <label for="email"></label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          v-model="email"
-        />
-      </div>
-      <div class="form-item">
-        <label for="password"></label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          v-model="password"
-        />
-      </div>
-      <div class="button-panel">
-        <input
-          type="button"
-          class="button"
-          title="Google Login"
-          value="Google Login"
-          @click="googleSignIn"
-        />
-        <input
-          v-if="isSignIn"
-          type="button"
-          class="button"
-          title="Sign In"
-          value="Sign In"
-          @click="mailSignIn"
-        />
-        <input
-          v-else
-          type="button"
-          class="signup-button"
-          title="Sign Up"
-          value="Sign Up"
-          @click="mailSignUp"
-        />
-      </div>
-    </form>
-    <div class="form-footer">
-      <p><a href="#">パスワードをお忘れの方</a></p>
-    </div>
-  </div>
-  <div v-else class="form-wrapper">
-    <h1>Login User</h1>
-    <form>
-      <div class="form-item">
-        <label for="email"></label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email
-        Address"
-          v-model="user.email"
-        />
-      </div>
-      <div class="form-item">
-        <label for="password"></label>
-        <input
-          type="text"
-          name="password"
-          placeholder="displayName：未設定"
-          v-model="user.displayName"
-        />
-      </div>
-    </form>
-    <div class="form-footer">
-      <p @click="mailLogOut"><a>ログアウト</a></p>
-    </div>
-
   </div>
 
   <!-- この空画像は一旦srcのassetsに入ってる -->
@@ -514,9 +424,7 @@ form {
 
 .switch {
   position: absolute;
-
-  top: 3300px;
-
+  top: 3320px;
   left: 50%;
   width: 180px;
   height: 40px;
@@ -698,7 +606,7 @@ a.btn-malformation:hover {
 } */
 
 .site_content {
-  background-image: url(/Users/otamiyu/Downloads/webex/original-team-app/src/assets/reregeek.png);
+  background-image: url(/Users/takahashinaoki/webex/original-team-app/src/assets/regeek.png);
   background-position: 50% 10%;
 }
 .resizeimage img {
@@ -850,5 +758,4 @@ a.btn-malformation:hover {
   background-color: #59adc7;
   height: 80px;
 }
-
 </style>
