@@ -14,7 +14,7 @@
           <option>証券・ネット証券業界</option>
           <option>生命保険業界</option>
           <option>損害保険業界</option>
-          <option>クレジット業界界</option>
+          <option>クレジット業界</option>
           <option>リース業界</option>
           <option>通信サービス業界</option>
           <option>ソフトウェア業界</option>
