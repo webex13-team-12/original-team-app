@@ -234,21 +234,16 @@ export default {
   },
   created() {
     this.user = JSON.parse(localStorage.getItem("currentUser"))
-    if (this.user) {
-      const profileRef = query(
-        collection(db, "profile"),
-        where("uid", "==", this.user.uid)
-      )
-      getDocs(profileRef).then((docSnap) => {
-        docSnap.forEach((doc) => {
-          this.profileId = doc.id
-          this.profile = doc.data()
-        })
+    const profileRef = query(
+      collection(db, "profile"),
+      where("uid", "==", this.user.uid)
+    )
+    getDocs(profileRef).then((docSnap) => {
+      docSnap.forEach((doc) => {
+        this.profileId = doc.id
+        this.profile = doc.data()
       })
-    } else {
-      alert("ログインしてください")
-      this.$router.push("/signin")
-    }
+    })
   },
 }
 </script>
