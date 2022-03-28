@@ -7,6 +7,8 @@
       <router-link to="/addcompany" class="addButton">企業追加</router-link>
     </div>
     <div class="company-background">
+      <h2 class="top-title">企業一覧</h2>
+      <div v-if="industrial_companies.length === 0">企業を追加しましょう</div>
       <div
         class="company-list"
         v-for="industrial in industrial_companies"
