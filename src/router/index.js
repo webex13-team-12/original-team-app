@@ -32,6 +32,13 @@ const routes = [
     component: CompanyDetail,
     props: true,
   },
+  {
+    path: "/mypage",
+    name: "mypage",
+
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MyPageView.vue"),
+  },
 ]
 
 const router = createRouter({
