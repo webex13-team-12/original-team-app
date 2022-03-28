@@ -167,6 +167,12 @@
       </div>
     </div>
   </div>
+
+
+  <!-- この空画像は一旦srcのassetsに入ってる -->
+  <!-- <div class="top_daimei">就活を、自分を、クリアに</div> -->
+  <!-- <img src="@/assets/busy_woman.png" alt="悩み女性" /> -->
+
 </template>
 
 <script>
@@ -420,9 +426,7 @@ form {
 
 .switch {
   position: absolute;
-
-  top: 3300px;
-
+  top: 3320px;
   left: 50%;
   width: 180px;
   height: 40px;
@@ -604,7 +608,7 @@ a.btn-malformation:hover {
 } */
 
 .site_content {
-  background-image: url(/Users/otamiyu/Downloads/webex/original-team-app/src/assets/reregeek.png);
+  background-image: url(/Users/takahashinaoki/webex/original-team-app/src/assets/regeek.png);
   background-position: 50% 10%;
 }
 .resizeimage img {

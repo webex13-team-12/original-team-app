@@ -19,7 +19,7 @@
           class="input_textform_goal"
           name=""
           id=""
-          v-model="mokuhyo_text"
+          v-model="profile.goal"
           type="text"
           placeholder="就活の目標"
         >
@@ -32,7 +32,7 @@
       <div>資格</div>
       <textarea
         class="input_textform"
-        v-model="sikaku_text"
+        v-model="profile.sikaku"
         placeholder="取得資格を入力"
       ></textarea>
       <div>入学卒業</div>
@@ -40,11 +40,11 @@
         <div class="keireki_yohaku">中学</div>
         <textarea
           class="input_textform_school"
-          v-model="juniorhighschool_text"
+          v-model="profile.juniorhighschool_name"
           placeholder="中学校名を入力してください"
         ></textarea>
         <p>
-          <select name="example1">
+          <select name="example1" v-model="profile.juniorhighschool_year">
             <option value="2013">2013</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
@@ -54,24 +54,23 @@
         <div class="keireki_yohaku">年</div>
 
         <p>
-          <select name="example2">
+          <select name="example2" v-model="profile.juniorhighschool_state">
             <option value="卒業">卒業</option>
             <option value="入学">入学</option>
             <option value="留学">留学</option>
             <option value="留年">留年</option>
           </select>
         </p>
-        <!-- <p><input type="submit" value="決定" /></p> -->
       </div>
       <div class="h_school">
         <div class="keireki_yohaku">高校</div>
         <textarea
           class="input_textform_school"
-          v-model="juniorhighschool_text"
+          v-model="profile.highschool_name"
           placeholder="高校名を入力してください"
         ></textarea>
         <p>
-          <select name="example1">
+          <select name="example1" v-model="profile.highschool_year">
             <option value="2013">2015</option>
             <option value="2014">2016</option>
             <option value="2015">2017</option>
@@ -81,7 +80,7 @@
         <div class="keireki_yohaku">年</div>
 
         <p>
-          <select name="example2">
+          <select name="example2" v-model="profile.highschool_state">
             <option value="卒業">卒業</option>
             <option value="入学">入学</option>
             <option value="留学">留学</option>
@@ -94,11 +93,11 @@
         <div class="keireki_yohaku">大学</div>
         <textarea
           class="input_textform_school"
-          v-model="colleageschool_text"
+          v-model="profile.colleageschool_name"
           placeholder="大学名を入力してください"
         ></textarea>
         <p>
-          <select name="example1">
+          <select name="example1" v-model="profile.colleageschool_year">
             <option value="2013">2016</option>
             <option value="2014">2017</option>
             <option value="2016">2018</option>
@@ -112,7 +111,7 @@
         <div class="keireki_yohaku">年</div>
 
         <p>
-          <select name="example2">
+          <select name="example2" v-model="profile.colleageschool_state">
             <option value="卒業">卒業</option>
             <option value="入学">入学</option>
             <option value="留学">留学</option>
@@ -128,7 +127,7 @@
       <div class="daimei">自己PR</div>
       <textarea
         class="input_textform_text"
-        v-model="owntext"
+        v-model="profile.owntext"
         placeholder="自己PR"
         id="app"
       ></textarea>
@@ -137,7 +136,7 @@
       <div class="daimei">ガクチカ</div>
       <textarea
         class="input_textform_text"
-        v-model="gakutikatext"
+        v-model="profile.gakutikatext"
         placeholder="学生時代に頑張ったことを入力してみよう"
         id="app"
       ></textarea>
@@ -146,7 +145,7 @@
       <div class="daimei">業界志望理由</div>
       <textarea
         class="input_textform_text"
-        v-model="gyokaitext"
+        v-model="profile.gyokaitext"
         placeholder="その業界を志望している理由"
         id="app"
       ></textarea>
@@ -155,49 +154,97 @@
       <div class="daimei">その他</div>
       <textarea
         class="input_textform_text"
-        v-model="othertext"
+        v-model="profile.othertext"
         placeholder="自由記入欄"
         id="app"
       ></textarea>
     </div>
   </div>
-  <button v-on:click="edit_profile" class="edit">内容を更新する</button>
+  <button v-on:click="addProfile" class="edit edit-button">
+    内容を更新する
+  </button>
 </template>
 
 <script>
-// import { doc, setDoc } from "firebase/firestore"
-// import { db } from "../firebase"
+import {
+  collection,
+  serverTimestamp,
+  doc,
+  setDoc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore"
+// firebase.js で db として export したものを import
+import { db } from "@/firebase"
 
 export default {
   data() {
     return {
-      mokuhyo_text: "",
-      id: "",
-      sikaku_text: "",
-      juniorhighschool_text: "",
-      colleageschool_text: "",
-      owntext: "",
-      gakutikatext: "",
-      gyokaitext: "",
+      profileId: "",
       file: null,
+      user: null /*ここ追加 */,
+      profile: {
+        goal: "",
+        uid: "" /*ここ追加 uid=userID */,
+        sikaku: "",
+        juniorhighschool_name: "",
+        highschool_name: "",
+        colleageschool_name: "",
+        juniorhighschool_year: "",
+        highschool_year: "",
+        colleageschool_year: "",
+        juniorhighschool_state: "",
+        highschool_state: "",
+        colleageschool_state: "",
+        owntext: "",
+        gakutikatext: "",
+        gyokaitext: "",
+        othertext: "",
+      },
     }
   },
-  //   methods: {
-  // edit_profile() {
-  //   //   console.log(`submit`)
-  //   const profileRef = doc(db, "profile", this.id)
-  //   setDoc(profileRef, {
-  //     mokuhyo: this.topprofile.mokuhyo_text,
-  //   })
-  //   getDoc(profileRef).then((docSnap) => {
-  //     if (docSnap.exists()) {
-  //       this.mokuhyo_text = docSnap.data()
-  //     } else {
-  //       alert("No such document")
-  //     }
-  //   })
-  //   },
-  //   },
+  methods: {
+    addProfile() {
+      if (!this.user) {
+        alert("ログインユーザーがいません")
+      } else {
+        setDoc(doc(db, "profile", this.user.uid), {
+          uid: this.user.uid,
+          goal: this.profile.goal,
+          sikaku: this.profile.sikaku,
+          juniorhighschool_name: this.profile.juniorhighschool_name,
+          highschool_name: this.profile.highschool_name,
+          colleageschool_name: this.profile.colleageschool_name,
+          juniorhighschool_year: this.profile.juniorhighschool_year,
+          highschool_year: this.profile.highschool_year,
+          colleageschool_year: this.profile.colleageschool_year,
+          juniorhighschool_state: this.profile.juniorhighschool_state,
+          highschool_state: this.profile.highschool_state,
+          colleageschool_state: this.profile.colleageschool_state,
+          owntext: this.profile.owntext,
+          gakutikatext: this.profile.gakutikatext,
+          gyokaitext: this.profile.gyokaitext,
+          othertext: this.profile.othertext,
+          updatedAt: serverTimestamp(),
+        })
+        alert("更新完了")
+      }
+    },
+  },
+  created() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"))
+    const profileRef = query(
+      collection(db, "profile"),
+      where("uid", "==", this.user.uid)
+    )
+    getDocs(profileRef).then((docSnap) => {
+      docSnap.forEach((doc) => {
+        this.profileId = doc.id
+        this.profile = doc.data()
+      })
+    })
+  },
 }
 </script>
 
@@ -284,8 +331,9 @@ export default {
   margin-bottom: 15px;
   width: 200px;
   height: 40px;
-
-  text-align: center;
+  font-weight: bold;
+  /* text-align: center; */
+  line-height: 40px;
 }
 .input_textform {
   width: 200px;
@@ -309,5 +357,28 @@ export default {
 }
 .edit {
   margin: 30px;
+}
+.edit-button {
+  display: inline-block;
+  border-radius: 5%; /* 角丸       */
+  text-align: center; /* 文字位置   */
+  cursor: pointer; /* カーソル   */
+  padding: 10px 10px; /* 余白       */
+  background: #82bcd9; /* 背景色     */
+  color: #ffffff; /* 文字色     */
+  line-height: 1.2em; /* 1行の高さ  */
+  transition: 0.3s; /* なめらか変化 */
+  box-shadow: 4px 4px 3px #666666; /* 影の設定 */
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 200px;
+  font-size: 20px;
+}
+.edit-button:hover {
+  box-shadow: none;
+  color: #82bcd9;
+  background: #ffffff;
+  border: 1px ridge #82bcd9;
 }
 </style>
