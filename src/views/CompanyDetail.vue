@@ -8,9 +8,15 @@
           type="radio"
           name="rdo"
           id="yes"
-          checked
+          :checked="!isEditable"
         />
-        <input @click="toEditable(2)" type="radio" name="rdo" id="no" />
+        <input
+          @click="toEditable(2)"
+          type="radio"
+          name="rdo"
+          id="no"
+          :checked="isEditable"
+        />
         <div class="switch">
           <label class="toggle-label-left" for="yes">詳細中</label>
           <label class="toggle-label-right" for="no">編集中</label>
@@ -258,7 +264,7 @@ export default {
       }
     },
     editFinish() {
-      this.isEditable = !this.isEditable
+      this.isEditable = false
       const companyRef = doc(db, "company", this.id)
       setDoc(companyRef, {
         user: this.selectedCompany.user,
