@@ -38,20 +38,18 @@
           value="Google Login"
           @click="googleSignIn"
         />
-      </div>
-      <div v-if="isSignIn" class="button-panel">
         <input
+          v-if="isSignIn"
           type="button"
           class="button"
           title="Sign In"
           value="Sign In"
           @click="mailSignIn"
         />
-      </div>
-      <div v-else class="button-panel">
         <input
+          v-else
           type="button"
-          class="button"
+          class="signup-button"
           title="Sign Up"
           value="Sign Up"
           @click="mailSignUp"
@@ -109,7 +107,6 @@ export default {
       isSignIn: true,
     }
   },
-  // props: ["currentUser"],
   methods: {
     toSignIn(num) {
       switch (num) {
@@ -238,7 +235,7 @@ button {
 }
 
 .form-wrapper {
-  background: #fafafa;
+  background: #d4e5e9;
   margin: 3em auto;
   padding: 0 1em;
   max-width: 370px;
@@ -277,8 +274,9 @@ form {
 }
 
 .button-panel {
-  margin: 1em 0 0;
+  margin: 1.5em 0 0;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 .button-panel .button {
@@ -294,10 +292,30 @@ form {
   text-transform: uppercase;
   transition: background 0.3s ease-in-out;
   width: 100%;
+  margin-bottom: 5px;
+}
+
+.button-panel .signup-button {
+  background: #ec6f5c;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 50px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .button:hover {
   background: #72b6d8;
+}
+.signup-button:hover {
+  background: #eb4f37;
 }
 
 .form-footer {
