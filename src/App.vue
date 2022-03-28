@@ -19,9 +19,10 @@
         class="nav__logo nav__link"
         >企業リスト</router-link
       > -->
-    <router-link to="/" class="nav__logo nav__link">企業リスト</router-link>
+    <router-link to="/" class="nav__logo nav__link">ジョブマネ</router-link>
 
     <div class="nav__items">
+      <router-link to="/" class="nav__item nav__link">企業リスト</router-link>
       <router-link
         to="/about"
         class="nav__item nav__link"
@@ -114,17 +115,20 @@ export default {
   justify-content: space-between;
   align-items: stretch;
   background-color: #59adc7;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  padding: 5px;
 }
 .nav__link {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  color: rgba(221, 220, 220, 0.89);
+  color: #fdfffe;
   text-decoration: none;
   font-size: larger;
   font-weight: bold;
+
+  text-decoration: none;
 }
 
 .nav a.router-link-exact-active {
@@ -150,5 +154,8 @@ export default {
 * {
   padding: 0;
   margin: 0;
+}
+.router-link {
+  text-decoration: none;
 }
 </style>
