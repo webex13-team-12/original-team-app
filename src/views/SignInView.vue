@@ -167,10 +167,13 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 
   <!-- この空画像は一旦srcのassetsに入ってる -->
   <!-- <div class="top_daimei">就活を、自分を、クリアに</div> -->
   <!-- <img src="@/assets/busy_woman.png" alt="悩み女性" /> -->
+=======
+>>>>>>> fdf93d75e4b0a65b8a92bb380ac030dcd368fa3c
 </template>
 
 <script>
