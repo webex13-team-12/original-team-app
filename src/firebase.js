@@ -1,18 +1,28 @@
+ SelfAnalysis_fixed
+
+
+
+
+
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDEDeqJiHKILd4Zr3prTn1kwAjfqjsRDx4",
-  authDomain: "tweet-d0c5b.firebaseapp.com",
-  projectId: "tweet-d0c5b",
-  storageBucket: "tweet-d0c5b.appspot.com",
-  messagingSenderId: "350582898032",
-  appId: "1:350582898032:web:c6c148d51b46abbaaea3b5",
-  measurementId: "G-71MMGCJRRN",
+  apiKey: "AIzaSyCKCINrJZYlXyu4nFP8UipUGkSXK28vLHg",
+  authDomain: "knobsalmonproject.firebaseapp.com",
+  projectId: "knobsalmonproject",
+  storageBucket: "knobsalmonproject.appspot.com",
+  messagingSenderId: "592330708412",
+  appId: "1:592330708412:web:74089c109f7e34767d07b9",
+  measurementId: "G-EQEX0YZHGW",
 }
 
-// Firebaseアプリオブジェクトを初期化
+// Initialize Firebase
 const app = initializeApp(firebaseConfig)
-// Firestoreを読み込み、db(databaseの略)として export
+ master
 export const db = getFirestore(app)
