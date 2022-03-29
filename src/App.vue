@@ -1,8 +1,4 @@
 <template>
- SelfAnalysis_fixed
-  
-     
-    
   <!-- <header>
     <div></div>
     <nav class="header_content">
@@ -28,7 +24,7 @@
     <div class="nav__items">
       <router-link to="/" class="nav__item nav__link">企業リスト</router-link>
       <router-link
-        to="/about"
+        to="/self-analysis"
         class="nav__item nav__link"
         v-bind:val="currentUser"
         >自己分析</router-link
@@ -112,7 +108,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background: #eeeff1;
+  /* background: #eeeff1; */
   padding-bottom: 30px;
 }
 .nav__bar {
@@ -166,4 +162,4 @@ export default {
   text-decoration: none;
 }
 </style>
- master
+master
