@@ -1,10 +1,14 @@
 <template>
+ SelfAnalysis_fixed
+  
+     
+    
   <!-- <header>
     <div></div>
     <nav class="header_content">
       <router-link to="/" class="header_home">Home</router-link> |
       <router-link to="/about" class="header_company">企業リスト</router-link>
-      <router-link to="/bunseki" class="header_bunseki">自己分析</router-link>
+      <router-link to="/self-analysis" class="header_bunseki">自己分析</router-link>
       <router-link to="/mypage" class="header_mypage">マイページ</router-link>
       <router-link to="/login" class="header_login">ログイン</router-link>
     </nav>
@@ -162,3 +166,4 @@ export default {
   text-decoration: none;
 }
 </style>
+ master

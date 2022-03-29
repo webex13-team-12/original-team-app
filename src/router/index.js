@@ -5,6 +5,7 @@ import SignInView from "../views/SignInView.vue"
 import AddCompany from "../views/AddCompany.vue"
 import CompanyDetail from "../views/CompanyDetail.vue"
 
+import SelfAnalysis from "../views/SelfAnalysis.vue"
 const routes = [
   {
     path: "/",
@@ -38,6 +39,11 @@ const routes = [
 
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/MyPageView.vue"),
+  },
+  {
+    path: "/self-analysis",
+    name: SelfAnalysis,
+    component: SelfAnalysis,
   },
 ]
 
