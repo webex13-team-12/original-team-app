@@ -1,31 +1,23 @@
 <template>
-  <h1>自己分析</h1>
-  <h2>幼少期～大学までの経験を投稿し、フィードバックしましょう！</h2>
-  <div class="home__wrapper">
-    <div class="form__wrapper">
-      <textarea
-        class="form__textarea"
-        v-model="text"
-        placeholder="幼少期～大学までの経験を語ろう！"
-      />
-      <div class="form__buttons">
-        <button v-on:click="postTweet" class="form__submit-button">投稿</button>
-      </div>
+  <div class="SelfAnalysis">
+    <div class="home__wrapper">
+      <submit-form />
     </div>
   </div>
 </template>
 
 <script>
+import SubmitForm from "../components/SubmitForm.vue"
+
 export default {
+  components: { SubmitForm },
   data() {
     return {
-      text: "",
+      tweets: [],
     }
   },
   methods: {
-    postTweet() {
-      alert("投稿機能の完成をお楽しみに！")
-    },
+    postTweet() {},
   },
 }
 </script>
@@ -34,25 +26,16 @@ export default {
 .home__wrapper {
   margin: 0 auto;
   max-width: 600px;
-  background-color: #ccc;
+  background-color: #ffffe0;
+  border-radius: 5%;
 }
-.form__wrapper {
-  padding: 1rem;
-}
-.form__textarea {
-  width: 100%;
-  height: calc(1.3rem * 3 + 0.5rem * 2);
-  padding: 0.5rem;
-  line-height: 1.3rem;
-  border-radius: 5px;
-  border: none;
-  resize: none;
-}
-.form__textarea:focus {
-  outline: none;
-}
-.form__buttons {
-  display: flex;
-  justify-content: flex-end;
+
+.SelfAnalysis {
+  width: 80%;
+  padding: 3% 5% 5% 5%;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  box-shadow: 4px 4px 3px #666666;
 }
 </style>
