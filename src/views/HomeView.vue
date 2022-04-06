@@ -114,6 +114,8 @@ export default {
   width: 100%;
   margin-bottom: 40px;
   position: relative;
+  padding-top: 30px;
+  background: #f7f6f6;
 }
 
 .company-name {
